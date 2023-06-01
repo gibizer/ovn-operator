@@ -42,19 +42,17 @@ spec:
                   enable-chassis-as-gateway:
                     type: boolean
                   ovn-bridge:
+                    default: br-int
                     type: string
                   ovn-encap-type:
                     default: geneve
-                    description: OvnEncapType - geneve or vxlan
                     enum:
                     - geneve
                     - vxlan
                     type: string
                   system-id:
+                    default: random
                     type: string
-                required:
-                - ovn-bridge
-                - system-id
                 type: object
               networkAttachment:
                 description: NetworkAttachment is a NetworkAttachment resource name
