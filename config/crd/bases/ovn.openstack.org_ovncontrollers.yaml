@@ -36,10 +36,13 @@ spec:
             description: OVNControllerSpec defines the desired state of OVNController
             properties:
               external-ids:
+                default:
+                  ovn-encap-type: geneve
                 description: OVSExternalIDs is a set of configuration options for
                   OVS external-ids table
                 properties:
                   enable-chassis-as-gateway:
+                    default: true
                     type: boolean
                   ovn-bridge:
                     default: br-int

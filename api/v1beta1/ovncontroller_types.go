@@ -38,7 +38,7 @@ const (
 // OVNControllerSpec defines the desired state of OVNController
 type OVNControllerSpec struct {
 	// +kubebuilder:validation:Optional
-	// +kubebuilder:default={}
+	// +kubebuilder:default={ovn-encap-type: geneve}
 	ExternalIDS OVSExternalIDs `json:"external-ids"`
 
 	// +kubebuilder:validation:Required
@@ -122,18 +122,20 @@ func (instance OVNController) IsReady() bool {
 type OVSExternalIDs struct {
 	// +kubebuilder:validation:Optional
 	// +kubebuilder:default="random"
-	SystemID  string `json:"system-id,omitempty"`
+	SystemID string `json:"system-id"`
 
 	// +kubebuilder:validation:Optional
 	// +kubebuilder:default="br-int"
-	OvnBridge string `json:"ovn-bridge,omitempty"`
+	OvnBridge string `json:"ovn-bridge"`
 
 	// +kubebuilder:validation:Optional
 	// +kubebuilder:default="geneve"
 	// +kubebuilder:validation:Enum={"geneve","vxlan"}
-	OvnEncapType string `json:"ovn-encap-type,omitempty"`
+	OvnEncapType string `json:"ovn-encap-type"`
 
-	EnableChassisAsGateway bool `json:"enable-chassis-as-gateway,omitempty" optional:"true"`
+	// +kubebuilder:validation:Optional
+	// +kubebuilder:default=true
+	EnableChassisAsGateway bool `json:"enable-chassis-as-gateway"`
 }
 
 // RbacConditionsSet - set the conditions for the rbac object
